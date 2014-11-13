@@ -1,7 +1,5 @@
 #! /usr/bin/env python
 
-# Usage: bam2fasta.py <inputbam> <outputdir>
-
 import os
 import sys
 import argparse
