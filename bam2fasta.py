@@ -46,7 +46,7 @@ def main( ):
             current_cluster.append( read )
 	else:
             clusters.append( current_cluster )
-            current_cluster = []
+            current_cluster = [read]
     if len( current_cluster ) != 0:
 	clusters.append( current_cluster )
 
@@ -63,7 +63,8 @@ def main( ):
                 if read.is_reverse:
                     seq = seq.reverse_complement()
                 rec = SeqRecord.SeqRecord( seq,
-                                           "/read_num={0} /gb={0} /clone_end=5' /name={1}".format( read_num, read.qname ),
+                                           "/read_num={0} /gb={0} /clone_end={2} /name={1}".format( read_num, read.qname,
+                                                                                                    "5'" if read.is_reverse else "3'" ),
                                            "", "" )
                 SeqIO.write( rec, outfile, "fasta" )
                 read_num += 1
